@@ -3,6 +3,9 @@ package br.calebe.exemplos.ex01;
 import static org.junit.Assert.assertArrayEquals;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.ArrayList;
+import java.util.List;
+import junit.framework.Assert;
 
 public class CarrinhoTest {
 
@@ -35,12 +38,10 @@ public class CarrinhoTest {
         carrinho.add(livro);
         Produto deitel = new Produto("Java: como programar", 150.00);
         carrinho.add(deitel);
-        assertEquals(2, carrinho.numeroDeProdutos());
-        assertTrue(carrinho.buscarProduto(livro));
-        assertTrue(carrinho.buscarProduto(deitel));
-      /*  Produto menor;
-        menor = carrinho.menorProduto();
-        assertArrayEquals(new Object[]{livro}, new Object[]{menor});*/
+        Assert.assertEquals(2, carrinho.numeroDeProdutos());
+        Assert.assertTrue(carrinho.buscarProduto(livro));
+        Assert.assertTrue(carrinho.buscarProduto(deitel));
+   
     }
 
     @Test
@@ -61,8 +62,8 @@ public class CarrinhoTest {
 		carrinho.add(deitel);
                 produtos.add(livro);
                 produtos.add(deitel);
-                assertEquals(2, carrinho.numeroDeProdutos());
-                assertEquals(produtos, carrinho.getList());
+                Assert.assertEquals(2, carrinho.numeroDeProdutos());
+                Assert.assertEquals(produtos, carrinho.getList());
         }
     
     
@@ -70,14 +71,14 @@ public class CarrinhoTest {
         public void removendoUmProduto() throws CarrinhoVazioExpected {
 		Produto livro = new Produto("Java em 24 horas", 50.00);
 		carrinho.add(livro);
-		assertTrue(carrinho.remove(livro));
-                assertEquals(0, carrinho.numeroDeProdutos());
+		Assert.assertTrue(carrinho.remove(livro));
+                Assert.assertEquals(0, carrinho.numeroDeProdutos());
 	}
         
         @Test(expected = CarrinhoVazioExpected.class)
         public void removendoUmProdutoInexistente() throws CarrinhoVazioExpected{
                 Produto deitel = new Produto("Java: como programar", 150.00);
-                assertFalse(carrinho.remove(deitel));
+                Assert.assertFalse(carrinho.remove(deitel));
         }
         
         @Test
@@ -88,11 +89,11 @@ public class CarrinhoTest {
 		carrinho.add(deitel);
                 Produto livroInfantil = new Produto("A branca de neve", 25.00);
                 carrinho.add(livroInfantil);
-                assertEquals(210.00, carrinho.calcularTotalPedido(), 1e-40);
+                Assert.assertEquals(205.00, carrinho.calcularTotalPedido());
                 carrinho.remove(deitel);
-                assertEquals(85.00, carrinho.calcularTotalPedido(), 1e-40);
+                Assert.assertEquals(85.00, carrinho.calcularTotalPedido());
                 carrinho.add(deitel);
-                assertEquals(210.00, carrinho.calcularTotalPedido(), 1e-40);
+                Assert.assertEquals(205.00, carrinho.calcularTotalPedido());
         }
 
 }
