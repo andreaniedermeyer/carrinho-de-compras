@@ -27,4 +27,51 @@ public class Carrinho {
         }
         return menor;
     }
+    
+    public boolean remove(Produto produto) throws CarrinhoVazioExpected {
+                if (produtos.isEmpty())
+			throw new CarrinhoVazioExpected();
+                else if(!buscarProduto(produto))
+                        return false;
+                else
+                        produtos.remove(produto);
+               return true;
+	}
+
+    public boolean buscarProduto(Produto p) throws CarrinhoVazioExpected {
+                if (produtos.isEmpty())
+			throw new CarrinhoVazioExpected();
+		for (Produto produto : produtos) {
+			if (p.equals(produto))
+				return true;
+		}
+		return false;
+        }
+
+    public int numeroDeProdutos(){
+                return produtos.size();
+        }
+    
+    public void listarProdutos() throws CarrinhoVazioExpected{
+                if (produtos.isEmpty())
+			throw new CarrinhoVazioExpected();
+                System.out.println("*********Lista de Produtos**********");
+		for (Produto produto : produtos)
+			System.out.println("Produto: " + "\"" + produto.getNome() + "\"" +  "      Valor: " + produto.getPreco() + "\n");
+        }
+        
+        public List<Produto> getList() throws CarrinhoVazioExpected{
+            if (produtos.isEmpty())
+			throw new CarrinhoVazioExpected();
+            return produtos;
+        }
+        
+        public double calcularTotalPedido(){
+               double total = 0.0;
+               if (produtos.isEmpty())
+                    return 0.0;
+               for (Produto produto : produtos)
+                    total += produto.getPreco();
+               return total;
+        }
 }
