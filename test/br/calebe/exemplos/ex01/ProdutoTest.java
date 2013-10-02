@@ -30,11 +30,12 @@ public class ProdutoTest {
     
     @Test(expected = IllegalArgumentException.class)
     public void nomeVazio(){
-        Produto prod1 = new Produto("", 150.99);
+        Produto prod1 = new Produto(" ", 150.99);
     }
     
     @Test(expected = IllegalArgumentException.class)
     public void precoInvalido(){
-        Produto prod1 = new Produto("Enciclopedia", -150.00);
+        Produto prod1;
+        prod1 = new Produto("Enciclopedia", -150.00);
     }
 }

@@ -20,16 +20,14 @@ public class CarrinhoTest {
     public void colocandoZeroProduto() throws CarrinhoVazioExpected {
         Produto menor;
         menor = carrinho.menorProduto();
-        assertArrayEquals(new Object[]{null}, new Object[]{menor});
+        Assert.assertEquals(0,carrinho.numeroDeProdutos());
     }
 
     @Test
     public void colocandoUmProduto() throws CarrinhoVazioExpected {
         Produto livro = new Produto("Java em 24 horas", 50.00);
         carrinho.add(livro);
-        Produto menor;
-        menor = carrinho.menorProduto();
-        assertArrayEquals(new Object[]{livro}, new Object[]{menor});
+        Assert.assertEquals(1,carrinho.numeroDeProdutos());
     }
 
     @Test
@@ -50,7 +48,7 @@ public class CarrinhoTest {
         carrinho.add(original);
         Produto copia = new Produto("Java em 24 horas", 50.00);
         original = carrinho.menorProduto();
-        assertArrayEquals(new Object[]{original}, new Object[]{copia});
+        Assert.assertEquals(original, copia);
     }
     
     @Test
@@ -77,8 +75,8 @@ public class CarrinhoTest {
         
         @Test(expected = CarrinhoVazioExpected.class)
         public void removendoUmProdutoInexistente() throws CarrinhoVazioExpected{
-                Produto deitel = new Produto("Java: como programar", 150.00);
-                Assert.assertFalse(carrinho.remove(deitel));
+                Produto deitel2 = new Produto("Java: como programar", 150.00);
+                Assert.assertFalse(carrinho.remove(deitel2));
         }
         
         @Test

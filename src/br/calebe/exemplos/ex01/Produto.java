@@ -6,6 +6,12 @@ public class Produto {
     private double preco;
 
     public Produto(String nome, double preco) {
+        if(nome == null || nome.trim().isEmpty()){
+            throw new IllegalArgumentException();
+        }
+        if (preco < 0 ){
+            throw new IllegalArgumentException();
+        }
         this.nome = nome;
         this.preco = preco;
     }
