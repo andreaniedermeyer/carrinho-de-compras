@@ -36,4 +36,8 @@ public class Produto {
     public String getNome(){
                 return nome;
         }
+    
+    public void setPreco(double preco){
+        this.preco = preco;
+    }
 }
